@@ -1,16 +1,733 @@
-## Hi there 👋
+[index.html.txt](https://github.com/user-attachments/files/27363472/index.html.txt)
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Motorsi — ავტოსერვისი თბილისი</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+Georgian:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-<!--
-**themotorsi/Themotorsi** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f5f0;
+    --gray: #1a1a1a;
+    --mid: #888;
+    --accent: #e8e8e0;
+  }
 
-Here are some ideas to get you started:
+  html { scroll-behavior: smooth; }
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+  body {
+    background: var(--white);
+    color: var(--black);
+    font-family: 'Noto Sans Georgian', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 48px;
+    background: rgba(245,245,240,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 0.12em;
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex; gap: 36px; list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--black);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    font-weight: 400;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  .nav-links a:hover { opacity: 1; }
+
+  .nav-cta {
+    background: var(--black);
+    color: var(--white) !important;
+    opacity: 1 !important;
+    padding: 10px 22px;
+    border-radius: 2px;
+    font-size: 12px !important;
+    letter-spacing: 0.1em;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 680px;
+    display: flex; align-items: flex-end;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 60%, #222 100%);
+  }
+
+  /* Car silhouette SVG background */
+  .hero-car {
+    position: absolute;
+    right: -60px; bottom: 0;
+    width: 80%;
+    max-width: 900px;
+    opacity: 0.18;
+    animation: carSlide 1.2s cubic-bezier(0.22,1,0.36,1) forwards;
+    transform: translateX(80px);
+  }
+
+  @keyframes carSlide {
+    to { transform: translateX(0); opacity: 0.18; }
+  }
+
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, rgba(10,10,10,0.92) 40%, rgba(10,10,10,0.2) 100%);
+  }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    padding: 0 48px 80px;
+    max-width: 700px;
+    animation: fadeUp 1s 0.3s both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-tag {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--mid);
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 6px 14px;
+    margin-bottom: 28px;
+    text-transform: uppercase;
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(64px, 10vw, 120px);
+    line-height: 0.92;
+    color: var(--white);
+    letter-spacing: 0.04em;
+    margin-bottom: 28px;
+  }
+
+  .hero-title span {
+    display: block;
+    color: var(--white);
+    opacity: 0.22;
+    font-size: 0.55em;
+    letter-spacing: 0.18em;
+  }
+
+  .hero-sub {
+    color: rgba(245,245,240,0.6);
+    font-size: 15px;
+    line-height: 1.7;
+    max-width: 420px;
+    margin-bottom: 44px;
+  }
+
+  .hero-buttons {
+    display: flex; gap: 16px; flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--white);
+    color: var(--black);
+    padding: 14px 32px;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    font-family: 'Noto Sans Georgian', sans-serif;
+    border: none; cursor: pointer;
+    border-radius: 2px;
+    font-weight: 500;
+    transition: background 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: #ddd; }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    padding: 14px 32px;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    font-family: 'Noto Sans Georgian', sans-serif;
+    border: 1px solid rgba(255,255,255,0.3);
+    cursor: pointer; border-radius: 2px;
+    font-weight: 400;
+    transition: border-color 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: rgba(255,255,255,0.7); }
+
+  /* STATS BAR */
+  .stats-bar {
+    background: var(--black);
+    display: flex; justify-content: center;
+    gap: 0;
+  }
+
+  .stat {
+    flex: 1; max-width: 260px;
+    padding: 36px 32px;
+    text-align: center;
+    border-right: 1px solid rgba(255,255,255,0.07);
+  }
+  .stat:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    color: var(--white);
+    letter-spacing: 0.04em;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  /* SERVICES */
+  .section {
+    padding: 100px 48px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 64px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding-bottom: 28px;
+  }
+
+  .section-tag {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--mid);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(38px, 5vw, 64px);
+    letter-spacing: 0.04em;
+    line-height: 1;
+  }
+
+  .section-desc {
+    font-size: 14px;
+    color: var(--mid);
+    max-width: 280px;
+    line-height: 1.7;
+    text-align: right;
+  }
+
+  /* Services grid */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1px;
+    background: rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.1);
+  }
+
+  .service-card {
+    background: var(--white);
+    padding: 36px 32px;
+    transition: background 0.25s;
+    cursor: default;
+  }
+  .service-card:hover {
+    background: var(--black);
+    color: var(--white);
+  }
+  .service-card:hover .service-icon { color: rgba(255,255,255,0.3); }
+  .service-card:hover .service-name { color: var(--white); }
+  .service-card:hover .service-desc { color: rgba(255,255,255,0.5); }
+
+  .service-icon {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: rgba(0,0,0,0.2);
+    transition: color 0.25s;
+    line-height: 1;
+  }
+
+  .service-name {
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    margin-bottom: 10px;
+    transition: color 0.25s;
+  }
+
+  .service-desc {
+    font-size: 12px;
+    color: var(--mid);
+    line-height: 1.7;
+    transition: color 0.25s;
+  }
+
+  /* WHY US */
+  .why-section {
+    background: var(--black);
+    padding: 100px 48px;
+  }
+
+  .why-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .why-text .section-tag { color: rgba(255,255,255,0.35); }
+  .why-text .section-title { color: var(--white); margin-bottom: 28px; }
+
+  .why-body {
+    color: rgba(255,255,255,0.5);
+    font-size: 15px;
+    line-height: 1.8;
+    margin-bottom: 40px;
+  }
+
+  .why-list {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 16px;
+  }
+
+  .why-list li {
+    display: flex; align-items: flex-start; gap: 14px;
+    color: rgba(255,255,255,0.7);
+    font-size: 14px;
+  }
+
+  .why-list li::before {
+    content: '—';
+    color: rgba(255,255,255,0.25);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* Car graphic right side */
+  .why-visual {
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .why-car-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    border: 1px solid rgba(255,255,255,0.07);
+    overflow: hidden;
+    background: rgba(255,255,255,0.02);
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .why-car-wrap svg { width: 90%; opacity: 0.4; }
+
+  /* CONTACT */
+  .contact-section {
+    padding: 100px 48px;
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .contact-info { padding-top: 8px; }
+
+  .contact-phone {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    letter-spacing: 0.04em;
+    color: var(--black);
+    text-decoration: none;
+    display: block;
+    margin-bottom: 8px;
+    transition: opacity 0.2s;
+  }
+  .contact-phone:hover { opacity: 0.6; }
+
+  .contact-detail {
+    font-size: 13px;
+    color: var(--mid);
+    margin-bottom: 4px;
+    letter-spacing: 0.04em;
+  }
+
+  .contact-detail span {
+    color: var(--black);
+    font-weight: 500;
+  }
+
+  .contact-form {
+    display: flex; flex-direction: column; gap: 16px;
+  }
+
+  .form-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  }
+
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+
+  .form-group label {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    border: 1px solid rgba(0,0,0,0.15);
+    background: transparent;
+    padding: 12px 14px;
+    font-size: 14px;
+    font-family: 'Noto Sans Georgian', sans-serif;
+    color: var(--black);
+    border-radius: 2px;
+    outline: none;
+    transition: border-color 0.2s;
+    resize: none;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus { border-color: var(--black); }
+
+  .form-group textarea { height: 100px; }
+
+  .btn-submit {
+    background: var(--black);
+    color: var(--white);
+    border: none;
+    padding: 15px 32px;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    font-family: 'Noto Sans Georgian', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 2px;
+    align-self: flex-start;
+    transition: opacity 0.2s;
+  }
+  .btn-submit:hover { opacity: 0.75; }
+
+  /* FOOTER */
+  footer {
+    background: var(--black);
+    padding: 40px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--white);
+    letter-spacing: 0.12em;
+    opacity: 0.6;
+  }
+
+  .footer-copy {
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.06em;
+  }
+
+  .footer-addr {
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    text-align: right;
+    line-height: 1.6;
+  }
+
+  /* Divider */
+  .divider {
+    max-width: 1280px;
+    margin: 0 auto;
+    border: none;
+    border-top: 1px solid rgba(0,0,0,0.08);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero-content { padding: 0 24px 60px; }
+    .section { padding: 70px 24px; }
+    .section-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .section-desc { text-align: left; }
+    .why-section { padding: 70px 24px; }
+    .why-inner { grid-template-columns: 1fr; gap: 48px; }
+    .why-visual { display: none; }
+    .contact-section { grid-template-columns: 1fr; gap: 48px; padding: 70px 24px; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 16px; text-align: center; }
+    .footer-addr { text-align: center; }
+    .stats-bar { flex-wrap: wrap; }
+    .stat { min-width: 140px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">THE MOTORSI</a>
+  <ul class="nav-links">
+    <li><a href="#services">სერვისები</a></li>
+    <li><a href="#about">ჩვენ შესახებ</a></li>
+    <li><a href="#contact">კონტაქტი</a></li>
+    <li><a href="tel:+995597052607" class="nav-cta">დარეკეთ</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+
+  <!-- SVG car silhouette -->
+  <svg class="hero-car" viewBox="0 0 900 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M80 240 L120 180 L220 140 L380 120 L560 128 L680 150 L760 180 L800 220 L820 240 L80 240Z" fill="white"/>
+    <path d="M220 140 L260 80 L400 60 L520 70 L580 120" fill="white" opacity="0.7"/>
+    <ellipse cx="200" cy="250" rx="70" ry="30" fill="white" opacity="0.9"/>
+    <ellipse cx="660" cy="250" rx="70" ry="30" fill="white" opacity="0.9"/>
+    <rect x="100" y="155" width="600" height="5" rx="2" fill="white" opacity="0.3"/>
+    <path d="M290 135 L310 75 L500 65 L530 130" stroke="white" stroke-width="3" fill="none" opacity="0.5"/>
+  </svg>
+
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <div class="hero-tag">თბილისი, საქართველო</div>
+    <h1 class="hero-title">
+      THE<br>MOTORSI
+      <span>AUTO SERVICE</span>
+    </h1>
+    <p class="hero-sub">პროფესიონალური ავტოსერვისი თბილისში. ზეთის შეცვლა, სამუხრუჭო სისტემა, ძრავის დიაგნოსტიკა და სხვა მრავალი სერვისი.</p>
+    <div class="hero-buttons">
+      <a href="#contact" class="btn-primary">ჩავიწეროთ ვიზიტი</a>
+      <a href="#services" class="btn-outline">სერვისები</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat">
+    <div class="stat-num">500+</div>
+    <div class="stat-label">კმაყოფილი კლიენტი</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">15+</div>
+    <div class="stat-label">სერვისის სახეობა</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">5★</div>
+    <div class="stat-label">რეიტინგი</div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="section-header">
+    <div>
+      <p class="section-tag">სერვისები</p>
+      <h2 class="section-title">რას გთავაზობთ</h2>
+    </div>
+    <p class="section-desc">სრული ავტოსერვისი ერთ სახლქვეშ — სწრაფად, პროფესიონალურად, გარანტიით.</p>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">⬡</div>
+      <div class="service-name">ზეთის შეცვლა</div>
+      <div class="service-desc">ძრავის ზეთის და ფილტრის სრული შეცვლა ნებისმიერი მარკის ავტომობილისთვის.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">⬡</div>
+      <div class="service-name">სამუხრუჭო სისტემა</div>
+      <div class="service-desc">სამუხრუჭო ხუნდების, დისკების და ჰიდრავლიკის შეკეთება და შეცვლა.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">⬡</div>
+      <div class="service-name">ჰუდის სერვისი</div>
+      <div class="service-desc">ძრავის განყოფილების სრული დათვალიერება, რეგულირება და შეკეთება.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">⬡</div>
+      <div class="service-name">კომპიუტერული დიაგნოსტიკა</div>
+      <div class="service-desc">თანამედროვე სკანერებით ავტომობილის სისტემების სრული ანალიზი.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">⬡</div>
+      <div class="service-name">საკიდი სისტემა</div>
+      <div class="service-desc">ამორტიზატორები, ბერკეტები, ბუჩქები — სრული შეკეთება.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">⬡</div>
+      <div class="service-name">საბურავები</div>
+      <div class="service-desc">საბურავების შეცვლა, ბალანსირება და წნევის კალიბრაცია.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">⬡</div>
+      <div class="service-name">ელექტრო სისტემა</div>
+      <div class="service-desc">ბატარეა, გენერატორი, განათება — ელექტრული სისტემების სრული სერვისი.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">⬡</div>
+      <div class="service-name">გამაგრილებელი სისტემა</div>
+      <div class="service-desc">რადიატორი, თერმოსტატი, ანტიფრიზი — გადახურების პრევენცია.</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- WHY -->
+<section class="why-section" id="about">
+  <div class="why-inner">
+    <div class="why-text">
+      <p class="section-tag">ჩვენ შესახებ</p>
+      <h2 class="section-title" style="color:var(--white); margin-bottom:28px;">რატომ<br>THE MOTORSI</h2>
+      <p class="why-body">ჩვენ ვართ თბილისის ავტოსერვისი, სადაც ხარისხი და სიჩქარე პირველ ადგილზეა. გამოცდილი ოსტატები, თანამედროვე აღჭურვილობა.</p>
+      <ul class="why-list">
+        <li>გამჭვირვალე ფასები — ყველაფერი შეთანხმდება წინასწარ</li>
+        <li>სწრაფი შესრულება — პატივს ვცემთ თქვენს დროს</li>
+        <li>ნებისმიერი მარკა და მოდელი მისაღებია</li>
+        <li>გარანტია ყველა სამუშაოზე</li>
+        <li>პარკინგი და მოსაცდელი ადგილი</li>
+      </ul>
+    </div>
+    <div class="why-visual">
+      <div class="why-car-wrap">
+        <svg viewBox="0 0 500 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M30 140 L70 100 L160 70 L280 60 L380 68 L450 100 L480 130 L490 140 L30 140Z" fill="white"/>
+          <path d="M160 70 L185 30 L290 22 L340 40 L370 65" fill="white" opacity="0.6"/>
+          <ellipse cx="110" cy="148" rx="42" ry="18" fill="white" opacity="0.9"/>
+          <ellipse cx="390" cy="148" rx="42" ry="18" fill="white" opacity="0.9"/>
+          <line x1="30" y1="142" x2="490" y2="142" stroke="white" stroke-width="1" opacity="0.2"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-info">
+    <p class="section-tag">კონტაქტი</p>
+    <h2 class="section-title" style="margin-bottom:32px;">დაგვიკავშირდით</h2>
+
+    <a href="tel:+995597052607" class="contact-phone">+995 597 052 607</a>
+
+    <p class="contact-detail" style="margin-top:20px; margin-bottom:20px;">
+      <span>მენეჯერი</span> — ვიზიტის ჩასაწერად
+    </p>
+
+    <p class="contact-detail">
+      <span>მდებარეობა:</span> თბილისი, საქართველო
+    </p>
+    <p class="contact-detail">
+      <span>სამუშაო საათები:</span> ყოველდღე 09:00 – 19:00
+    </p>
+
+    <div style="margin-top: 36px; padding-top: 32px; border-top: 1px solid rgba(0,0,0,0.08);">
+      <p style="font-size:13px; color:var(--mid); line-height:1.8;">გაქვთ კითხვები? დარეკეთ ან შეავსეთ ფორმა — გიპასუხებთ რაც შეიძლება სწრაფად.</p>
+    </div>
+  </div>
+
+  <div class="contact-form">
+    <p class="section-tag">გამოგვიგზავნეთ შეტყობინება</p>
+    <div class="form-row">
+      <div class="form-group">
+        <label>სახელი</label>
+        <input type="text" placeholder="თქვენი სახელი">
+      </div>
+      <div class="form-group">
+        <label>ტელეფონი</label>
+        <input type="tel" placeholder="+995 5XX XXX XXX">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>ავტომობილი</label>
+      <input type="text" placeholder="მაგ: Toyota Camry 2019">
+    </div>
+    <div class="form-group">
+      <label>სერვისი</label>
+      <select>
+        <option value="">აირჩიეთ სერვისი</option>
+        <option>ზეთის შეცვლა</option>
+        <option>სამუხრუჭო სისტემა</option>
+        <option>ჰუდის სერვისი</option>
+        <option>კომპიუტერული დიაგნოსტიკა</option>
+        <option>საკიდი სისტემა</option>
+        <option>საბურავები</option>
+        <option>ელექტრო სისტემა</option>
+        <option>სხვა</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>შენიშვნა</label>
+      <textarea placeholder="დამატებითი ინფორმაცია..."></textarea>
+    </div>
+    <button class="btn-submit" onclick="alert('გმადლობთ! მალე დაგიკავშირდებით.')">გაგზავნა →</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">THE MOTORSI</div>
+  <div class="footer-copy">© 2025 The Motorsi. ყველა უფლება დაცულია.</div>
+  <div class="footer-addr">
+    თბილისი, საქართველო<br>
+    +995 597 052 607
+  </div>
+</footer>
+
+</body>
+</html>
